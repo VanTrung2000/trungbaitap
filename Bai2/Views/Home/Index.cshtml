@@ -1,0 +1,174 @@
+﻿@model HomeIndexVM
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="ui-assets/css/bootstrap.css">
+    <link rel="stylesheet" href="ui-assets/css/animate.css">
+    <link rel="stylesheet" href="ui-assets/css/owl.carousel.min.css">
+
+    <link rel="stylesheet"
+          href="ui-assets/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet"
+          href="ui-assets/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="ui-assets/fonts/flaticon/font/flaticon.css">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="ui-assets/css/style.css">
+</head>
+<body>
+
+
+    <div class="container">
+        <div class="text-center">
+            <button class="btn btn-dark filter-product-btn" data-filter="all">All</button>
+            @foreach (var item in Model.Categories)
+            {
+                <button class="btn btn-dark filter-product-btn" data-filter="@item.CategoryName">@item.CategoryName</button>
+            }
+        </div>
+    </div>
+
+    <br />
+
+    </section>
+    <!-- END section -->
+    <section class="site-section py-sm">
+        <div class="container">
+            <div class="row">
+                <div class="row">
+                    <div class="col-md-6">
+                    </div>
+                </div>
+                <div class="row blog-entries">
+                    <div class="col-md-12 col-lg-8 main-content">
+                        <div class="container">
+                        <div class="row">
+                            <!-- Khu vuc hien thi 5 sản phẩm -->
+                            @foreach (var item in Model.Products)
+                            {
+                                <div class="col-md-6 pb-4 filter @item.Category.CategoryName">
+                                    <div class="card bg-white rounded shadow-sm">
+                                        <div class="card-body row">
+                                            <div class="col-7"><label style="color:red">@item.Name</label></div>
+                                            <div class="col-5"><label style="color:red">@string.Format("{0:c0}", item.Price)</label></div>
+                                        </div>
+                                        <img src="~/images/@item.ImageUrl" alt="Alternate Text" class="card-img-top img-fluid d-block mx-auto mb-3"style="width:450px;height:200px" />
+                                        <div class="card-body row">
+                                            <div class="col-12">
+                                                <span class="badge w-100" style="background-color: lawngreen">@item.Category.CategoryName</span>
+                                            </div>
+                                        
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                            </div>
+                        
+
+
+
+
+
+
+
+
+                    </div>
+
+                    <!-- END main-content -->
+
+                    <div class="col-md-12 col-lg-4 sidebar">
+                        <div class="sidebar-box search-form-wrap">
+                            <form action="" class="search-form">
+                                <div class="form-group">
+                                    <span class="icon fa fa-search"></span> <input type="text"
+                                                                                   class="form-control" id="s"
+                                                                                   placeholder="Type a keyword and hit enter">
+                                </div>
+                            </form>
+                        </div>
+                        <!-- END sidebar-box -->
+                        
+                        <div class="sidebar-box">
+                            <h3 class="heading">Categories</h3>
+                            <ul class="categories">
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <li>@item.CategoryName</li>
+                                }
+                            </ul>
+                        </div>
+                        <!-- END sidebar-box -->
+
+
+                    </div>
+                    <!-- END sidebar -->
+
+                </div>
+            </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END footer -->
+    <!-- loader -->
+    <div id="loader" class="show fullscreen">
+        <svg class="circular" width="48px" height="48px">
+            <circle class="path-bg" cx="24" cy="24" r="22" fill="none"
+                    stroke-width="4" stroke="#eeeeee" />
+            <circle class="path" cx="24" cy="24" r="22" fill="none"
+                    stroke-width="4" stroke-miterlimit="10" stroke="#f4b214" />
+        </svg>
+    </div>
+
+    <script src="ui-assets/js/jquery-3.2.1.min.js"></script>
+    <script src="ui-assets/js/jquery-migrate-3.0.0.js"></script>
+    <script src="ui-assets/js/popper.min.js"></script>
+    <script src="ui-assets/js/bootstrap.min.js"></script>
+    <script src="ui-assets/js/owl.carousel.min.js"></script>
+    <script src="ui-assets/js/jquery.waypoints.min.js"></script>
+    <script src="ui-assets/js/jquery.stellar.min.js"></script>
+
+
+    <script src="ui-assets/js/main.js"></script>
+</body>
+</html>
+@section ScriptsValidate {
+    <script>
+        $(document).ready(function () {
+            $(".filter-product-btn").click(function () {
+                let value = $(this).attr('data-filter');
+                if (value == "all") {
+                    $(".filter").show('1000');
+                }
+                else {
+                    $(".filter").not('.' + value).hide('3000');
+                    $(".filter").filter('.' + value).show('3000');
+                   
+                }
+            })
+        })
+    </script>
+}
